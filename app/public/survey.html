@@ -192,9 +192,8 @@
             score: scoreArr 
         };
         console.log(newFriend);
-        // Why is not working? Why is console loging the code of this file instead of the input user data?
 
-        $.post("http://localhost:7080/api/friends", newFriend)
+        $.post("/api/friends", newFriend)
             .done(function(data) {
                 console.log("posting response data: ", data);
                 alert("Adding friend...");        
