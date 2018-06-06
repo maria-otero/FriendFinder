@@ -223,7 +223,7 @@
           contentType: "application/json",
           success: function(response) {
             console.log(response);
-            alert("Your new match is:" + response.name + "!! Congratulations, now you have a new friend :)");
+            alert("Your new match is: " + response.name + "!! Congratulations, now you have a new friend :)");
             $("#modal-title").text(response.name);
             // $("#match-img").attr("src", response.photo);
             $("#results-modal").modal("toggle");
