@@ -223,6 +223,7 @@
           contentType: "application/json",
           success: function(response) {
             console.log(response);
+            alert(response.name);
             $("#modal-title").text(response.name);
             // $("#match-img").attr("src", response.photo);
             $("#results-modal").modal("toggle");
