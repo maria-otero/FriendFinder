@@ -4,7 +4,7 @@ var path = require("path");
 var app = express();
 
 // Pull in our data that we want to display on our API route
-var friendsData = require("../data/friends-data.json");
+var friendsData = require("../data/friends-data.js");
 console.log(friendsData);
 
 
@@ -24,38 +24,37 @@ module.exports = function(app) {
         console.log(newfriend);
 
 
-
         // Comparation code
-        // Compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the `totalDiff`
-            // * Example: 
-                // * User 1: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`
-                // * User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]`
-                // * Total Difference: **2 + 1 + 2 =** **_5_**
-    
+        // Compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the `totalDiff` 
+        // * Example: 
+        // * User 1: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`
+        // * User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]`
+        // * Total Difference: **2 + 1 + 2 =** **_5_**
         var match;
         var matchScore = 100;
         for (var i = 0; i < friendsData.length; i++) {
             // Looping through friends objects
+            var currentFriend = friendsData[i];
             var totalDiff = 0;
             // Looping through score arrays
-            for (var x = 0; x < 10; x++) {
+            for (var x = 0; x < currentFriend.scores.length; x++) {
                 //Use the absolute value of the differences
-                totalDiff += Math.abs(newfriend.scores[x] - friendsData[i].scores[x])
+                // console.log(newfriend + "line 43");
+                
+                totalDiff += Math.abs(newfriend.scores[x] - currentFriend.scores[x]);
             }
             // Match!
             // * The closest match will be the user with the least amount of difference.
             if (totalDiff < matchScore) {
                 matchScore = totalDiff;
-                match = friendsData[i];
+                match = currentFriend;
             }
         }
-
         // Puch the new friend into de friends-data objet array
         friendsData.push(newfriend);
-        return res.json(newfriend);
-        
-        
         console.log(match);
+        return res.json(match);
+        
     });      
 }
 

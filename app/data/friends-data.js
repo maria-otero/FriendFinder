@@ -1,3 +1,4 @@
+var friendsArr =
 [
     {
         "name":"Kim",
@@ -30,4 +31,7 @@
             2
           ]
     }
-]
+];
+
+
+module.exports = friendsArr;
